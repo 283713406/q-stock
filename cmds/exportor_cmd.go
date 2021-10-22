@@ -21,7 +21,7 @@ const (
 
 var (
 	// DefaultExportFilename 要导出的文件名默认值
-	DefaultExportFilename = fmt.Sprintf("./dist/x-stock.%s.xlsx", time.Now().Format("20060102"))
+	DefaultExportFilename = fmt.Sprintf("./dist/q-stock.%s.xlsx", time.Now().Format("20060102"))
 )
 
 // FlagsExportor exportor cli flags

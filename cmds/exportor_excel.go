@@ -87,14 +87,17 @@ func (e Exportor) ExportExcel(ctx context.Context, filename string) (result []by
 		}
 		f.NewSheet(sheet)
 		for i, header := range headers {
+                        if header == "公司信息" {
+                            continue
+                        }
 			// 设置列宽
 			colNum := i + 1
 			width := 30.0
 			switch header {
 			case "主营构成", "每股收益预测":
 				width = 45.0
-			case "公司信息":
-				width = 0.0
+			//case "公司信息":
+			//	width = 0.0
 			}
 			col, err := excelize.ColumnNumberToName(colNum)
 			if err != nil {
@@ -150,6 +153,9 @@ func (e Exportor) ExportExcel(ctx context.Context, filename string) (result []by
 	for _, sheet := range sheets {
 		// 写 header
 		for i, header := range headers {
+                        if header == "公司信息" {
+                            continue
+                        }
 			axis, err := excelize.CoordinatesToCellName(i+1, 1)
 			if err != nil {
 				logging.Error(ctx, "CoordinatesToCellName error:"+err.Error())
@@ -186,6 +192,9 @@ func (e Exportor) ExportExcel(ctx context.Context, filename string) (result []by
 			}
 			headerValueMap := stock.GetHeaderValueMap()
 			for k, header := range headers {
+                                if header == "公司信息" {
+				    continue
+			        }
 				col := k + 1
 				axis, err := excelize.CoordinatesToCellName(col, row)
 				if err != nil {
