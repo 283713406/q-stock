@@ -8,7 +8,6 @@ import (
 	"sort"
 	"strings"
 	"sync"
-	"time"
 
 	"github.com/axiaoxin-com/goutils"
 	"github.com/axiaoxin-com/logging"
@@ -124,16 +123,22 @@ func (c Checker) CheckFundamentals(ctx context.Context, stock models.Stock) (res
 	itemOK := true
 	var lastFinaRoe float64
 	var lastFinaReport string
-	reports := stock.HistoricalFinaMainData.FilterByReportYear(ctx, time.Now().Year())
+        var lastYearRoe float64
+	var lastYearReport string
+	reports := stock.HistoricalFinaMainData.GetRecentReportYear(ctx)
 	if len(reports) > 0 {
 		lastFinaRoe = reports[0].Roejq
 		lastFinaReport = reports[0].ReportDateName
+		lastYearRoe = reports[1].Roejq
+		lastYearReport = reports[1].ReportDateName
 	}
-	desc := fmt.Sprintf("当前ROE:%f</br>%sROE:%f", stock.BaseInfo.RoeWeight, lastFinaReport, lastFinaRoe)
-	if stock.BaseInfo.RoeWeight < c.Options.MinROE {
+        logging.Debugf(ctx, "search reports:%+v", reports)
+	desc := fmt.Sprintf("%sROE:%f</br>%sROE:%f", lastYearReport, lastYearRoe, lastFinaReport, lastFinaRoe)
+	if lastYearRoe < c.Options.MinROE {
 		desc = fmt.Sprintf(
-			"当前ROE:%f</br>低于:%f</br>%sROE:%f",
-			stock.BaseInfo.RoeWeight,
+			"%sROE:%f</br>低于:%f</br>%sROE:%f",
+			lastYearReport,
+			lastYearRoe,
 			c.Options.MinROE,
 			lastFinaReport,
 			lastFinaRoe,

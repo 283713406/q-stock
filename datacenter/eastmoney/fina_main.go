@@ -225,6 +225,19 @@ func (h HistoricalFinaMainData) FilterByReportYear(ctx context.Context, reportYe
 	return result
 }
 
+// GetRecentReportYear 按财报获取最新一期报表和最近的年报
+func (h HistoricalFinaMainData) GetRecentReportYear(ctx context.Context) HistoricalFinaMainData {
+	result := HistoricalFinaMainData{}
+	result = append(result, h[0])
+	for _, i := range h {
+		if i.ReportType == FinaReportTypeYear {
+			result = append(result, i)
+			break
+		}
+	}
+	return result
+}
+
 // ValueListType 列表数据的数据类型
 type ValueListType string
 
