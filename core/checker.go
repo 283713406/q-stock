@@ -83,7 +83,7 @@ var DefaultCheckerOptions = CheckerOptions{
 	IsCheckJLLStability:  false,
 	IsCheckMLLStability:  false,
 	IsCheckPriceByCalc:   false,
-	MaxPEG:               0.5,
+	MaxPEG:               2.5,
 	MinBYYSRatio:         0.5,
 	MaxBYYSRatio:         1.5,
 	MinFZLDB:             1,

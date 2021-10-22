@@ -82,9 +82,9 @@ func FlagsCheckerOptions() []cli.Flag {
 		},
 		&cli.Float64Flag{
 			Name:        "checker.bank_max_bldkl",
-			Value:       3.0,
+			Value:       2.0,
 			Usage:       "银行股最大不良贷款率",
-			DefaultText: "3.0",
+			DefaultText: "2.0",
 		},
 		&cli.Float64Flag{
 			Name:        "checker.bank_min_bldkbbfgl",
@@ -112,9 +112,9 @@ func FlagsCheckerOptions() []cli.Flag {
 		},
 		&cli.Float64Flag{
 			Name:        "checker.max_peg",
-			Value:       0.5,
+			Value:       2.5,
 			Usage:       "最大 PEG",
-			DefaultText: "0.5",
+			DefaultText: "2.5",
 		},
 		&cli.Float64Flag{
 			Name:        "checker.min_byys_ratio",
