@@ -1,0 +1,156 @@
+{{ define "header" }}
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="股票,基本面,技术面,东方财富,选股,基金,4433" />
+    <meta name="description" content="X-STOCK, 财报分析，股票检测，基本面选股，基金检测，基金筛选，4433法则，飙股在线等" />
+    <meta name="author" content="axiaoxin" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1.0, maximum-scale=1, shrink-to-fit=no" />
+
+    <link rel="shortcut icon" href="http://cdn.axiaoxin.com/x-stock/favicon.ico">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="http://cdn.axiaoxin.com/css/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" href={{ if eq .Env "prod" }}"http://cdn.axiaoxin.com/x-stock/css/app.css"{{ else }}"/statics/css/app.css"{{ end }} />
+    <title>{{ .PageTitle }}</title>
+    <!-- 百度统计 -->
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?6b083b1b236eef0fd16fe52b959550df";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+</head>
+
+
+<body>
+<header>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo"><i class="material-icons">local_atm</i>X-STOCK</a>
+            <a href="#" data-target="mobile-sidenav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li id="nav-stock"><a href="/"><i class="material-icons left">trending_up</i>股票</a></li>
+                <li id="nav-fund"><a href="/fund"><i class="material-icons left">timeline</i>基金</a></li>
+                <li id="nav-about"><a href="/about"><i class="material-icons left">info_outline</i>关于</a></li>
+                <li id="nav-comment"><a href="/comment"><i class="material-icons left">chat_bubble_outline</i>留言</a></li>
+                <li id="nav-materials"><a href="/materials"><i class="material-icons left">book</i>资料</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-sidenav">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src={{ if eq .Env "prod" }}"http://cdn.axiaoxin.com/x-stock/img/sidenav_bg.png"{{ else }}"/statics/img/sidenav_bg.png"{{ end }}>
+                </div>
+                <a href="#!"><img class="circle" src={{ if eq .Env "prod" }}"http://cdn.axiaoxin.com/x-stock/img/sidenav_icon.png"{{ else }}"/statics/img/sidenav_icon.png"{{ end }}></a>
+                <a href="#!"><span class="white-text">X-STOCK v{{ .Version }}</span></a>
+            </div>
+        </li>
+        <li><a class="collapsible-header waves-effect waves-red" href="/"><i class="material-icons left">trending_up</i>股票</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="collapsible-header waves-effect waves-red" href="/fund"><i class="material-icons left">timeline</i>基金</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="collapsible-header waves-effect waves-red" href="/about"><i class="material-icons left">info_outline</i>关于</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="collapsible-header waves-effect waves-red" href="/comment"><i class="material-icons left">chat_bubble_outline</i>留言</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="collapsible-header waves-effect waves-red" href="/materials"><i class="material-icons left">book</i>资料</a></li>
+    </ul>
+
+    <div id="fixed-action-btn" class="fixed-action-btn" style="bottom: 74px; right: 24px;">
+        <a id="tap-target-btn" class="btn btn-floating btn-large red lighten-2">
+            <i class="large material-icons">bookmark_border</i>
+        </a>
+        <ul>
+            <li><a class="btn-floating red tooltipped pulse" data-position="left" data-tooltip="股票" href="/"><i class="material-icons">trending_up</i></a></li>
+            <li><a class="btn-floating orange tooltipped pulse" data-position="left" data-tooltip="基金" href="/fund"><i class="material-icons">timeline</i></a></li>
+            <li><a class="btn-floating blue tooltipped pulse" data-position="left" data-tooltip="关于" href="/about"><i class="material-icons">info_outline</i></a></li>
+            <li><a class="btn-floating purple tooltipped pulse" data-position="left" data-tooltip="留言" href="/comment"><i class="material-icons">chat_bubble_outline</i></a></li>
+            <li><a class="btn-floating brown tooltipped pulse" data-position="left" data-tooltip="资料" href="/materials"><i class="material-icons">book</i></a></li>
+            <li><a id="to-top" class="btn-floating green tooltipped pulse" data-position="left" data-tooltip="返回顶部"><i class="material-icons">publish</i></a></li>
+        </ul>
+    </div>
+</header>
+
+<main class="container">
+    {{ if .Error }}
+    <div class="row">
+        <div class="chip flow-text orange lighten-1 col s12 center-align">
+            {{ .Error }}
+            <i class="close material-icons">close</i>
+        </div>
+    </div>
+    {{ end }}
+{{ end }}
+
+{{ define "footer" }}
+</main>
+
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l3 s12">
+                <h5 class="white-text">友情链接</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="http://axiaoxin.com" target="_blank">阿小信的博客</a></li>
+                    <li><a class="grey-text text-lighten-3" href="http://mbti.axiaoxin.com" target="_blank">MBTI在线测试</a></li>
+                </ul>
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">研报</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="http://data.eastmoney.com/report/" target="_blank">东方财富研报中心</a></li>
+                    <li><a class="grey-text text-lighten-3" href="https://www.valuelist.top" target="_blank">价值目录</a></li>
+                    <li><a class="grey-text text-lighten-3" href="https://www.hanghangcha.com" target="_blank">行行查</a></li>
+                    <li><a class="grey-text text-lighten-3" href="https://robo.datayes.com/v2/selection" target="_blank">萝卜投研研报精选</a></li>
+                </ul>
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">工具</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="http://fund.eastmoney.com/compare/" target="_blank">基金对比</a></li>
+                    <li><a class="grey-text text-lighten-3" href="http://data.eastmoney.com/money/calc/FundCalcDTSY.html" target="_blank">基金定投收益计算器</a></li>
+                </ul>
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">网站</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="http://www.mof.gov.cn/index.htm" target="_blank">财政部</a></li>
+                    <li><a class="grey-text text-lighten-3" href="http://www.stats.gov.cn/" target="_blank">统计局</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <iframe src="https://ghbtns.com/github-btn.html?user=axiaoxin-com&amp;repo=x-stock&amp;type=star&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="120" height="20"></iframe>
+        <p class="right">© 2021-<script type="text/javascript">document.write(new Date().getFullYear());</script> X-STOCK, All rights reserved.</p>
+    </div>
+</footer>
+<script type="text/javascript" src="http://cdn.axiaoxin.com/js/jquery-3.6.0.min.js" ></script>
+<script type="text/javascript" src="http://cdn.axiaoxin.com/js/materialize.min.js" ></script>
+<script type="text/javascript" src="http://cdn.axiaoxin.com/js/tableExport.js" ></script>
+<script type="text/javascript" src="http://cdn.axiaoxin.com/js/clipboard.min.js" ></script>
+<script type="text/javascript" src="http://cdn.axiaoxin.com/js/chart.xkcd.min.js" ></script>
+
+<script type="text/javascript" src={{ if eq .Env "prod" }}"http://cdn.axiaoxin.com/x-stock/js/app.min.20211015-091454.js"{{ else }}"/statics/js/app.js"{{ end }} ></script>
+<script data-ad-client="ca-pub-3022214826355647" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EHXJT6J0DM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EHXJT6J0DM');
+</script>
+</body>
+</html>
+{{ end }}
