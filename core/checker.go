@@ -4,6 +4,7 @@ package core
 
 import (
 	"context"
+        "errors"
 	"fmt"
 	"sort"
 	"strings"
@@ -72,7 +73,7 @@ type CheckerOptions struct {
 var DefaultCheckerOptions = CheckerOptions{
 	MinROE:               10.0,
 	CheckYears:           5,
-	NoCheckYearsROE:      20.0,
+	NoCheckYearsROE:      15.0,
 	MaxDebtAssetRatio:    60.0,
 	MaxHV:                0.99,
 	MinTotalMarketCap:    50.0,
@@ -152,7 +153,7 @@ func (c Checker) CheckFundamentals(ctx context.Context, stock models.Stock) (res
 	}
 
 	// ROE 均值小于 NoCheckYearsROE 时，至少 n 年内逐年递增
-	checkItemName = fmt.Sprintf("ROE逐年递增（均值>=%f除外）", c.Options.NoCheckYearsROE)
+	checkItemName = fmt.Sprintf("ROE逐年递增（年值均>=%f除外）", c.Options.NoCheckYearsROE)
 	itemOK = true
 	roeList := stock.HistoricalFinaMainData.ValueList(
 		ctx,
@@ -161,11 +162,11 @@ func (c Checker) CheckFundamentals(ctx context.Context, stock models.Stock) (res
 		eastmoney.FinaReportTypeYear,
 	)
 	desc = fmt.Sprintf("%d年内ROE(年报):</br>%+v", c.Options.CheckYears, roeList)
-	roeavg, err := goutils.AvgFloat64(roeList)
+	iagt, err := isAllGreaterThanFloat64(roeList, c.Options.NoCheckYearsROE)
 	if err != nil {
 		logging.Warn(ctx, "roe avg error:"+err.Error())
 	}
-	if roeavg < c.Options.NoCheckYearsROE &&
+	if !iagt &&
 		!stock.HistoricalFinaMainData.IsIncreasingByYears(
 			ctx,
 			eastmoney.ValueListTypeROE,
@@ -748,4 +749,17 @@ func (c Checker) GetFundStocksSimilarity(ctx context.Context, codes []string) ([
 		return sims[i].SimilarityValue > sims[j].SimilarityValue
 	})
 	return sims, nil
+}
+
+func isAllGreaterThanFloat64(f []float64, v float64) (bool, error) {
+	fl := len(f)
+	if fl == 0 {
+		return false, errors.New("empty slice")
+	}
+	for _, i := range f {
+		if i < v {
+			return false, nil
+		}
+	}
+	return true, nil
 }

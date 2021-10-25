@@ -46,7 +46,7 @@ func FlagsCheckerOptions() []cli.Flag {
 		},
 		&cli.Float64Flag{
 			Name:        "checker.no_check_years_roe",
-			Value:       20.0,
+			Value:       15.0,
 			Usage:       "ROE 高于该值时不做连续增长检查",
 			DefaultText: "20.0",
 		},
