@@ -241,10 +241,11 @@ func (c Checker) CheckFundamentals(ctx context.Context, stock models.Stock) (res
 	}
 
 	// 净利润至少 n 年内逐年递增
+        checkLrYears := 10
 	netprofitList := stock.HistoricalFinaMainData.ValueList(
 		ctx,
 		eastmoney.ValueListTypeNetProfit,
-		c.Options.CheckYears,
+		checkLrYears,
 		eastmoney.FinaReportTypeYear,
 	)
 	checkItemName = "净利润逐年递增且>0"
@@ -253,19 +254,39 @@ func (c Checker) CheckFundamentals(ctx context.Context, stock models.Stock) (res
 	for _, np := range netprofitList {
 		nps = append(nps, goutils.YiWanString(np))
 	}
-	desc = fmt.Sprintf("%d年内净利润:</br>%s", c.Options.CheckYears, strings.Join(nps, "</br>"))
+	desc = fmt.Sprintf("%d年内净利润:</br>%s", checkLrYears, strings.Join(nps, "</br>"))
 	if c.Options.IsCheckNetprofitGrow && len(netprofitList) > 0 {
 		if netprofitList[len(netprofitList)-1] <= 0 ||
 			!stock.HistoricalFinaMainData.IsIncreasingByYears(
 				ctx,
 				eastmoney.ValueListTypeNetProfit,
-				c.Options.CheckYears,
+				checkLrYears,
 				eastmoney.FinaReportTypeYear,
 			) {
 			ok = false
 			itemOK = false
 		}
 	}
+	result[checkItemName] = map[string]string{
+		"desc": desc,
+		"ok":   fmt.Sprint(itemOK),
+	}
+
+	//席勒市盈率估值法
+	checkItemName = "席勒市盈率估值法"
+	itemOK = true
+
+        // 合理估值系数为无风险收益率倒数
+        var valuationCoefficient float64
+	if stock.GetOrgType() == "银行" {
+		valuationCoefficient = 12
+	}else {
+		valuationCoefficient = 25
+	}
+
+	shiller := getShillerPEValuation(netprofitList, valuationCoefficient)
+	desc = fmt.Sprintf("%d年内净利润:</br>%s</br>按照当年合理估值7折买入，合理估值1.5倍卖出法,%s", checkLrYears,
+            strings.Join(nps, "</br>"), shiller)
 	result[checkItemName] = map[string]string{
 		"desc": desc,
 		"ok":   fmt.Sprint(itemOK),
@@ -762,4 +783,25 @@ func isAllGreaterThanFloat64(f []float64, v float64) (bool, error) {
 		}
 	}
 	return true, nil
+}
+
+func getShillerPEValuation(f []float64, valuationCoefficient float64) string {
+	fl := len(f)
+	if fl == 0 {
+		return "净利润数据为空，无法估值"
+	}
+
+	avg, _ := goutils.AvgFloat64(f)
+
+        reasonable := valuationCoefficient * avg
+
+	// 按照当年合理估值7折买入，合理估值150%卖出法。
+	buyingPoint := reasonable * 0.7
+	sellingPoint := reasonable * 1.5
+	buyingPoints := goutils.YiWanString(buyingPoint)
+	sellingPoints := goutils.YiWanString(sellingPoint)
+
+	res := fmt.Sprintf("可买入位置为%s，一年内卖点为%s。", buyingPoints, sellingPoints)
+
+	return res
 }
