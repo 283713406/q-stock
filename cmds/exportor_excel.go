@@ -62,9 +62,7 @@ func (e Exportor) ExportExcel(ctx context.Context, filename string) (result []by
 	// 创建全部数据表
 	defaultSheet := "总览"
 	lowPriceSheet := "30元内"
-	hv1Sheet := "历史波动率低于1"
-	hv2Sheet := "历史波动率高于1"
-	sheets := []string{defaultSheet, lowPriceSheet, hv1Sheet, hv2Sheet}
+	sheets := []string{defaultSheet, lowPriceSheet}
 	// 添加行业
 	for _, industry := range e.Stocks.GetIndustryList() {
 		sheets = append(sheets, industry+"行业")
@@ -87,17 +85,14 @@ func (e Exportor) ExportExcel(ctx context.Context, filename string) (result []by
 		}
 		f.NewSheet(sheet)
 		for i, header := range headers {
-                        if header == "公司信息" {
-                            continue
-                        }
 			// 设置列宽
 			colNum := i + 1
-			width := 30.0
+			width := 15.0
 			switch header {
-			case "主营构成", "每股收益预测":
-				width = 45.0
-			//case "公司信息":
-			//	width = 0.0
+			case "主营构成", "价值评估", "盈利预测", "十大流通股东":
+				width = 25.0
+			case "近五年 ROE":
+				width = 30.0
 			}
 			col, err := excelize.ColumnNumberToName(colNum)
 			if err != nil {
@@ -153,9 +148,6 @@ func (e Exportor) ExportExcel(ctx context.Context, filename string) (result []by
 	for _, sheet := range sheets {
 		// 写 header
 		for i, header := range headers {
-                        if header == "公司信息" {
-                            continue
-                        }
 			axis, err := excelize.CoordinatesToCellName(i+1, 1)
 			if err != nil {
 				logging.Error(ctx, "CoordinatesToCellName error:"+err.Error())
@@ -178,23 +170,12 @@ func (e Exportor) ExportExcel(ctx context.Context, filename string) (result []by
 				if stock.Price > 30 {
 					continue
 				}
-			case hv1Sheet:
-				if stock.HV > 1 {
-					continue
-				}
-			case hv2Sheet:
-				if stock.HV <= 1 {
-					continue
-				}
 			}
 			if strings.HasSuffix(sheet, "行业") && !strings.Contains(sheet, stock.Industry) {
 				continue
 			}
 			headerValueMap := stock.GetHeaderValueMap()
 			for k, header := range headers {
-                                if header == "公司信息" {
-				    continue
-			        }
 				col := k + 1
 				axis, err := excelize.CoordinatesToCellName(col, row)
 				if err != nil {
@@ -219,3 +200,4 @@ func (e Exportor) ExportExcel(ctx context.Context, filename string) (result []by
 	err = f.SaveAs(filename)
 	return
 }
+

@@ -63,7 +63,7 @@ func (e Exportor) ExportPic(ctx context.Context, filename string) (result []byte
 		// 写入图片
 		for j, stock := range stocks {
 			pt := freetype.Pt(40, (j+1)*int(fc.PointToFixed(fontSize)>>6)+40)
-			line := fmt.Sprintf("%s    %s", strings.Split(stock.Code, ".")[0], stock.Name)
+			line := fmt.Sprintf("%s", stock.Name)
 			_, err = fc.DrawString(line, pt)
 			if err != nil {
 				logging.Errorf(ctx, "draw %s error: %s", line, err.Error())
