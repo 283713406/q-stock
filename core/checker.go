@@ -166,14 +166,8 @@ func (c Checker) CheckFundamentals(ctx context.Context, stock models.Stock) (res
 	if err != nil {
 		logging.Warn(ctx, "roe avg error:"+err.Error())
 	}
-	if !iagt &&
-		!stock.HistoricalFinaMainData.IsIncreasingByYears(
-			ctx,
-			eastmoney.ValueListTypeROE,
-			c.Options.CheckYears,
-			eastmoney.FinaReportTypeYear,
-		) {
-		desc = fmt.Sprintf("%d年内未逐年递增:</br>%+v", c.Options.CheckYears, roeList)
+	if !iagt {
+		desc = fmt.Sprintf("%d年内ROE(年报):</br>%+v, 该值没有均大于%f", c.Options.CheckYears, roeList, c.Options.NoCheckYearsROE)
 		ok = false
 		itemOK = false
 	}
@@ -285,7 +279,7 @@ func (c Checker) CheckFundamentals(ctx context.Context, stock models.Stock) (res
 	}
 
 	shiller := getShillerPEValuation(netprofitList, valuationCoefficient)
-	desc = fmt.Sprintf("%d年内净利润:</br>%s</br>按照当年合理估值7折买入，合理估值1.5倍卖出法,%s", checkLrYears,
+	desc = fmt.Sprintf("%d年内净利润:</br>%s</br>%s", checkLrYears,
             strings.Join(nps, "</br>"), shiller)
 	result[checkItemName] = map[string]string{
 		"desc": desc,
@@ -801,7 +795,8 @@ func getShillerPEValuation(f []float64, valuationCoefficient float64) string {
 	buyingPoints := goutils.YiWanString(buyingPoint)
 	sellingPoints := goutils.YiWanString(sellingPoint)
 
-	res := fmt.Sprintf("可买入位置为%s，一年内卖点为%s。", buyingPoints, sellingPoints)
+	res := fmt.Sprintf("合理估值为%s * %f：按照当年合理估值7折买入，合理估值1.5倍卖出法，" +
+		"可买入位置为%s，一年内卖点为%s。", goutils.YiWanString(avg), valuationCoefficient, buyingPoints, sellingPoints)
 
 	return res
 }

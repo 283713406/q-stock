@@ -51,9 +51,9 @@ func FlagsFilter() []cli.Flag {
 	return []cli.Flag{
 		&cli.Float64Flag{
 			Name:        "filter.min_roe",
-			Value:       10.0,
+			Value:       1.0,
 			Usage:       "最低净资产收益率 (%)",
-			DefaultText: "10.0",
+			DefaultText: "1.0",
 		},
 		&cli.Float64Flag{
 			Name:        "filter.min_netprofit_yoy_ratio",
@@ -99,9 +99,9 @@ func FlagsFilter() []cli.Flag {
 		},
 		&cli.Float64Flag{
 			Name:        "filter.max_debt_asset_ratio",
-			Value:       60.0,
+			Value:       95.0,
 			Usage:       "最大资产负债率 (%)",
-			DefaultText: "60.0",
+			DefaultText: "95.0",
 		},
 		&cli.Float64Flag{
 			Name:        "filter.min_predict_netprofit_ratio",
