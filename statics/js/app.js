@@ -89,49 +89,14 @@ $(document).ready(function () {
                 '<td class="hide st_1">' +
                 stock.industry +
                 "</td>" +
-                '<td class="hide st_2">' +
-                stock.keywords +
-                "</td>" +
-                '<td class="hide st_3">' +
-                stock.company_profile +
-                "</td>" +
                 '<td class="hide st_4">' +
                 stock.main_forms +
-                "</td>" +
-                '<td class="hide st_5">' +
-                (stock.byys_ration * 100).toFixed(2) +
-                "%" +
-                "</td>" +
-                '<td class="hide st_6">' +
-                stock.report_date_name +
-                "</td>" +
-                '<td class="hide st_7">' +
-                stock.report_opinion +
                 "</td>" +
                 '<td class="hide st_8">' +
                 stock.jzpg +
                 "</td>" +
-                '<td class="hide st_9">' +
-                stock.latest_roe +
-                "%" +
-                "</td>" +
-                '<td class="hide st_55">' +
-                stock.latest_fina_roe +
-                "%" +
-                "</td>" +
-                '<td class="hide st_10">' +
-                stock.roe_tbzz.toFixed(2) +
-                "%" +
-                "</td>" +
                 '<td class="hide st_11">' +
                 human_float_slice(stock.roe_5y, "%") +
-                "</td>" +
-                '<td class="hide st_12">' +
-                stock.latest_eps +
-                "</td>" +
-                '<td class="hide st_13">' +
-                stock.eps_tbzz.toFixed(2) +
-                "%" +
                 "</td>" +
                 '<td class="hide st_14">' +
                 human_float_slice(stock.eps_5y, "") +
@@ -160,15 +125,6 @@ $(document).ready(function () {
                 stock.zxgxl.toFixed(2) +
                 "%" +
                 "</td>" +
-                '<td class="hide st_22">' +
-                stock.fina_report_date +
-                "</td>" +
-                '<td class="hide st_23">' +
-                stock.fina_appoint_publish_date +
-                "</td>" +
-                '<td class="hide st_24">' +
-                stock.fina_actual_publish_date +
-                "</td>" +
                 '<td class="hide st_25">' +
                 stock.total_market_cap +
                 "</td>" +
@@ -180,13 +136,6 @@ $(document).ready(function () {
                 stock.right_price +
                 "元" +
                 "</td>" +
-                '<td class="hide st_28">' +
-                stock.price_space +
-                "</td>" +
-                '<td class="hide st_29">' +
-                (stock.hv * 100).toFixed(2) +
-                "%" +
-                "</td>" +
                 '<td class="hide st_30">' +
                 stock.zxfzl.toFixed(2) +
                 "%" +
@@ -194,20 +143,8 @@ $(document).ready(function () {
                 '<td class="hide st_31">' +
                 stock.fzldb.toFixed(2) +
                 "</td>" +
-                '<td class="hide st_32">' +
-                stock.netprofit_growthrate_3_y.toFixed(2) +
-                "%" +
-                "</td>" +
-                '<td class="hide st_33">' +
-                stock.income_growthrate_3_y.toFixed(2) +
-                "%" +
-                "</td>" +
                 '<td class="hide st_34">' +
                 stock.listing_yield_year.toFixed(2) +
-                "%" +
-                "</td>" +
-                '<td class="hide st_35">' +
-                stock.listing_volatility_year.toFixed(2) +
                 "%" +
                 "</td>" +
                 '<td class="hide st_36">' +
@@ -216,29 +153,11 @@ $(document).ready(function () {
                 '<td class="hide st_37">' +
                 stock.peg.toFixed(2) +
                 "</td>" +
-                '<td class="hide st_38">' +
-                stock.org_rating +
-                "</td>" +
                 '<td class="hide st_39">' +
                 stock.profit_predict +
                 "</td>" +
-                '<td class="hide st_40">' +
-                stock.valuation_syl +
-                "</td>" +
-                '<td class="hide st_41">' +
-                stock.valuation_sjl +
-                "</td>" +
-                '<td class="hide st_42">' +
-                stock.valuation_sxol +
-                "</td>" +
-                '<td class="hide st_43">' +
-                stock.valuation_sxnl +
-                "</td>" +
                 '<td class="hide st_44">' +
                 stock.hyjzsp +
-                "</td>" +
-                '<td class="hide st_45">' +
-                stock.ztzd +
                 "</td>" +
                 '<td class="hide st_46">' +
                 human_float_slice(stock.mll_5y, "%") +
@@ -263,9 +182,6 @@ $(document).ready(function () {
                 "</td>" +
                 '<td class="hide st_53">' +
                 stock.free_holders_top_10 +
-                "</td>" +
-                '<td class="hide st_54">' +
-                stock.main_money_net_inflows +
                 "</td>" +
                 "</tr>"
             );
@@ -732,3 +648,4 @@ $(document).ready(function () {
     });
   });
 });
+

@@ -14,7 +14,7 @@ type ExportorData struct {
 	// 股票名
 	Name string `json:"name"                      csv:"股票名"`
 	// 股票代码
-	// Code string `json:"code"                      csv:"股票代码"`
+	Code string `json:"code"                      csv:"股票代码"`
 	// 所属行业
 	Industry string `json:"industry"                  csv:"所属行业"`
 	// 题材关键词
@@ -184,7 +184,7 @@ func NewExportorData(ctx context.Context, stock Stock) ExportorData {
 	fina := stock.HistoricalFinaMainData[0]
 	return ExportorData{
 		Name:            stock.BaseInfo.SecurityNameAbbr,
-		// Code:            stock.BaseInfo.Secucode,
+		Code:            stock.BaseInfo.Secucode,
 		Industry:        stock.BaseInfo.Industry,
 		// Keywords:        stock.CompanyProfile.KeywordsString(),
 		// CompanyProfile:  stock.CompanyProfile.ProfileString(),

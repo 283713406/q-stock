@@ -24,7 +24,7 @@ func StockIndex(c *gin.Context) {
 	data := gin.H{
 		"Env":          viper.GetString("env"),
 		"Version":      version.Version,
-		"PageTitle":    "X-STOCK | 股票",
+		"PageTitle":    "Q-STOCK | 股票",
 		"Error":        "",
 		"IndustryList": services.StockIndustryList,
 	}
@@ -44,7 +44,7 @@ func StockSelector(c *gin.Context) {
 	data := gin.H{
 		"Env":       viper.GetString("env"),
 		"Version":   version.Version,
-		"PageTitle": "X-STOCK | 股票 | 基本面筛选",
+		"PageTitle": "Q-STOCK | 股票 | 基本面筛选",
 		"Error":     "",
 		"Stocks":    models.StockList{},
 	}
@@ -88,7 +88,7 @@ func StockChecker(c *gin.Context) {
 	data := gin.H{
 		"Env":       viper.GetString("env"),
 		"Version":   version.Version,
-		"PageTitle": "X-STOCK | 股票 | 个股检测",
+		"PageTitle": "Q-STOCK | 股票 | 个股检测",
 		"Error":     "",
 	}
 	param := ParamStockChecker{}
