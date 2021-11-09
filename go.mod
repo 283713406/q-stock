@@ -1,4 +1,4 @@
-module github.com/axiaoxin-com/x-stock
+module github.com/283713406/q-stock
 
 go 1.16
 

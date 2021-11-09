@@ -6,12 +6,12 @@ import (
 	"io/ioutil"
 	"time"
 
+	"github.com/283713406/q-stock/core"
+	"github.com/283713406/q-stock/datacenter"
+	"github.com/283713406/q-stock/datacenter/eastmoney"
+	"github.com/283713406/q-stock/models"
+	"github.com/283713406/q-stock/services"
 	"github.com/axiaoxin-com/logging"
-	"github.com/axiaoxin-com/x-stock/core"
-	"github.com/axiaoxin-com/x-stock/datacenter"
-	"github.com/axiaoxin-com/x-stock/datacenter/eastmoney"
-	"github.com/axiaoxin-com/x-stock/models"
-	"github.com/axiaoxin-com/x-stock/services"
 	jsoniter "github.com/json-iterator/go"
 )
 

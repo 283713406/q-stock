@@ -13,8 +13,8 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/283713406/q-stock/statics"
 	"github.com/axiaoxin-com/logging"
-	"github.com/axiaoxin-com/x-stock/statics"
 	"github.com/golang/freetype"
 	"github.com/pkg/errors"
 	"golang.org/x/image/font"

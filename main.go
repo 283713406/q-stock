@@ -8,9 +8,9 @@ import (
 	"os"
 	"time"
 
+	"github.com/283713406/q-stock/cmds"
+	"github.com/283713406/q-stock/version"
 	"github.com/axiaoxin-com/logging"
-	"github.com/axiaoxin-com/x-stock/cmds"
-	"github.com/axiaoxin-com/x-stock/version"
 	"github.com/spf13/viper"
 	"github.com/urfave/cli/v2"
 )

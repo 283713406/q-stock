@@ -4,8 +4,8 @@ import (
 	"html/template"
 	"net/http"
 
+	"github.com/283713406/q-stock/statics"
 	"github.com/axiaoxin-com/goutils"
-	"github.com/axiaoxin-com/x-stock/statics"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/json-iterator/go/extra"

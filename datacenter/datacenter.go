@@ -2,10 +2,10 @@
 package datacenter
 
 import (
-	"github.com/axiaoxin-com/x-stock/datacenter/eastmoney"
-	"github.com/axiaoxin-com/x-stock/datacenter/eniu"
-	"github.com/axiaoxin-com/x-stock/datacenter/sina"
-	"github.com/axiaoxin-com/x-stock/datacenter/zszx"
+	"github.com/283713406/q-stock/datacenter/eastmoney"
+	"github.com/283713406/q-stock/datacenter/eniu"
+	"github.com/283713406/q-stock/datacenter/sina"
+	"github.com/283713406/q-stock/datacenter/zszx"
 )
 
 var (

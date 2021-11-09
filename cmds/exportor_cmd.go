@@ -8,9 +8,9 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/283713406/q-stock/core"
+	"github.com/283713406/q-stock/datacenter/eastmoney"
 	"github.com/axiaoxin-com/logging"
-	"github.com/axiaoxin-com/x-stock/core"
-	"github.com/axiaoxin-com/x-stock/datacenter/eastmoney"
 	"github.com/urfave/cli/v2"
 )
 
@@ -222,11 +222,12 @@ func ActionExportor() func(c *cli.Context) error {
 		checkerOpts := NewCheckerOptions(c)
 		checker := core.NewChecker(ctx, checkerOpts)
 
+		if c.Bool("disable_check") {
+			checker = nil
+		}
 		filter := NewFilter(c)
 		selector := core.NewSelector(ctx, filter, checker)
-		if c.Bool("disable_check") {
-			selector = core.NewSelector(ctx, filter, nil)
-		}
+
 		// logging.Infof(nil, "MinROE is %f ", selector.Checker.Options.MinROE)
 		b, _ := json.MarshalIndent(map[string]interface{}{
 			"filter":  filter,

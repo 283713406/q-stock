@@ -3,8 +3,8 @@ package routes
 import (
 	"testing"
 
+	"github.com/283713406/q-stock/services"
 	"github.com/axiaoxin-com/goutils"
-	"github.com/axiaoxin-com/x-stock/services"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"

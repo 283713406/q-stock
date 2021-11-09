@@ -3,8 +3,8 @@ package core
 import (
 	"testing"
 
+	"github.com/283713406/q-stock/datacenter/eastmoney"
 	"github.com/axiaoxin-com/logging"
-	"github.com/axiaoxin-com/x-stock/datacenter/eastmoney"
 	"github.com/stretchr/testify/require"
 )
 

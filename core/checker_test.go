@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/283713406/q-stock/models"
 	"github.com/axiaoxin-com/logging"
-	"github.com/axiaoxin-com/x-stock/models"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/require"
 )

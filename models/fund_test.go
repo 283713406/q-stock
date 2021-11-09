@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/axiaoxin-com/x-stock/datacenter/eastmoney"
+	"github.com/283713406/q-stock/datacenter/eastmoney"
 	jsoniter "github.com/json-iterator/go"
 	"github.com/stretchr/testify/require"
 )

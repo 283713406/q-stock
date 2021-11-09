@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/283713406/q-stock/core"
+	"github.com/283713406/q-stock/models"
 	"github.com/axiaoxin-com/logging"
-	"github.com/axiaoxin-com/x-stock/core"
-	"github.com/axiaoxin-com/x-stock/models"
 )
 
 // Exportor exportor 实例

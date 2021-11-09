@@ -3,12 +3,12 @@
 package cmds
 
 import (
+	"github.com/283713406/q-stock/cron"
+	"github.com/283713406/q-stock/routes"
+	"github.com/283713406/q-stock/routes/response"
+	"github.com/283713406/q-stock/services"
+	"github.com/283713406/q-stock/webserver"
 	"github.com/axiaoxin-com/logging"
-	"github.com/axiaoxin-com/x-stock/cron"
-	"github.com/axiaoxin-com/x-stock/routes"
-	"github.com/axiaoxin-com/x-stock/routes/response"
-	"github.com/axiaoxin-com/x-stock/services"
-	"github.com/axiaoxin-com/x-stock/webserver"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 	"github.com/urfave/cli/v2"

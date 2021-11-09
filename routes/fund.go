@@ -6,12 +6,12 @@ import (
 	"net/http"
 	"sync"
 
+	"github.com/283713406/q-stock/core"
+	"github.com/283713406/q-stock/models"
+	"github.com/283713406/q-stock/services"
+	"github.com/283713406/q-stock/version"
 	"github.com/axiaoxin-com/goutils"
 	"github.com/axiaoxin-com/logging"
-	"github.com/axiaoxin-com/x-stock/core"
-	"github.com/axiaoxin-com/x-stock/models"
-	"github.com/axiaoxin-com/x-stock/services"
-	"github.com/axiaoxin-com/x-stock/version"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 )
@@ -36,7 +36,7 @@ func FundIndex(c *gin.Context) {
 		data := gin.H{
 			"Env":       viper.GetString("env"),
 			"Version":   version.Version,
-			"PageTitle": "X-STOCK | 基金",
+			"PageTitle": "Q-STOCK | 基金",
 			"Error":     err.Error(),
 		}
 		c.HTML(http.StatusOK, "fund_index.html", data)

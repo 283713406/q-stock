@@ -12,12 +12,12 @@ import (
 	"sync"
 	"time"
 
+	"github.com/283713406/q-stock/datacenter"
+	"github.com/283713406/q-stock/datacenter/eastmoney"
+	"github.com/283713406/q-stock/datacenter/sina"
+	"github.com/283713406/q-stock/models"
 	"github.com/avast/retry-go"
 	"github.com/axiaoxin-com/logging"
-	"github.com/axiaoxin-com/x-stock/datacenter"
-	"github.com/axiaoxin-com/x-stock/datacenter/eastmoney"
-	"github.com/axiaoxin-com/x-stock/datacenter/sina"
-	"github.com/axiaoxin-com/x-stock/models"
 	"github.com/spf13/viper"
 )
 

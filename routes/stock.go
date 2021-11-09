@@ -9,12 +9,12 @@ import (
 	"strings"
 	"time"
 
+	"github.com/283713406/q-stock/core"
+	"github.com/283713406/q-stock/datacenter/eastmoney"
+	"github.com/283713406/q-stock/models"
+	"github.com/283713406/q-stock/services"
+	"github.com/283713406/q-stock/version"
 	"github.com/axiaoxin-com/goutils"
-	"github.com/axiaoxin-com/x-stock/core"
-	"github.com/axiaoxin-com/x-stock/datacenter/eastmoney"
-	"github.com/axiaoxin-com/x-stock/models"
-	"github.com/axiaoxin-com/x-stock/services"
-	"github.com/axiaoxin-com/x-stock/version"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 )

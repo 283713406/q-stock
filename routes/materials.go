@@ -6,8 +6,8 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"github.com/283713406/q-stock/version"
 	"github.com/axiaoxin-com/logging"
-	"github.com/axiaoxin-com/x-stock/version"
 	"github.com/gin-gonic/gin"
 	jsoniter "github.com/json-iterator/go"
 	"github.com/spf13/viper"
