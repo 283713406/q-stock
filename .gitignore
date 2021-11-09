@@ -19,7 +19,7 @@ dist/
 config.prod.toml
 tmp/
 
-x-stock
+q-stock
 *.tar.gz
 
 statics/js/app.min.*.js

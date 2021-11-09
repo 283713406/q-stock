@@ -53,7 +53,7 @@ func Materials(c *gin.Context) {
 	data := gin.H{
 		"Env":       viper.GetString("env"),
 		"Version":   version.Version,
-		"PageTitle": "X-STOCK | 资料",
+		"PageTitle": "Q-STOCK | 资料",
 	}
 	f, err := ioutil.ReadFile(MaterialsFilename)
 	if err != nil {

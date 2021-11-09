@@ -22,7 +22,7 @@ func QueryFundByStock(c *gin.Context) {
 	data := gin.H{
 		"Env":       viper.GetString("env"),
 		"Version":   version.Version,
-		"PageTitle": "X-STOCK | 基金 | 股票选基",
+		"PageTitle": "Q-STOCK | 基金 | 股票选基",
 		"Error":     "",
 	}
 

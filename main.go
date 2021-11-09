@@ -1,6 +1,6 @@
 //go:generate swag init --dir ./ --generalInfo routes/routes.go --propertyStrategy snakecase --output ./routes/docs
 
-// Package main x-stock is my stock bot
+// Package main q-stock is my stock bot
 package main
 
 import (
@@ -29,7 +29,7 @@ func init() {
 func main() {
 	app := cli.NewApp()
 	app.EnableBashCompletion = true
-	app.Name = "x-stock"
+	app.Name = "q-stock"
 	app.Usage = "mamba 的股票工具程序"
 	app.UsageText = `该程序不构成任何投资建议，程序只是个人辅助工具，具体分析仍然需要自己判断。`
 

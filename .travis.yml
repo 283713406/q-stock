@@ -7,7 +7,7 @@ go:
 os:
   - linux
 
-go_import_path: x-stock
+go_import_path: q-stock
 
 env:
   - GO111MODULE=on

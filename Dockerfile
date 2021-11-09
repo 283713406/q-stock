@@ -1,8 +1,8 @@
 FROM alpine
 
-WORKDIR /srv/x-stock
+WORKDIR /srv/q-stock
 
-ADD ./dist/x-stock.tar.gz /srv/
+ADD ./dist/q-stock.tar.gz /srv/
 
 EXPOSE 4869 4870
-ENTRYPOINT ["./x-stock", "-c", "./config.toml"]
+ENTRYPOINT ["./q-stock", "-c", "./config.toml"]

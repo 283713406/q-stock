@@ -192,7 +192,7 @@ func (e Exportor) ExportExcel(ctx context.Context, filename string) (result []by
 		Created:     time.Now().Format("2006-01-02 15:04:05"),
 		Creator:     "axiaoxin",
 		Description: string(desc),
-		Keywords:    "x-stock: https://github.com/axiaoxin-com/x-stock",
+		Keywords:    "q-stock: https://github.com/283713406/q-stock",
 	})
 
 	buf, err := f.WriteToBuffer()
